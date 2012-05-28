@@ -47,6 +47,7 @@
 @synthesize leftViewController=_left;
 @synthesize rightViewController=_right;
 @synthesize rootViewController=_root;
+@synthesize showNavigationItemButtons=_showNavigationItemButtons;
 
 @synthesize tap=_tap;
 @synthesize pan=_pan;
@@ -55,6 +56,7 @@
 - (id)initWithRootViewController:(UIViewController*)controller {
     if ((self = [self init])) {
         _root = controller;
+        self.showNavigationItemButtons = YES;
     }
     return self;
 }
@@ -405,8 +407,10 @@
     }
     
     if (_menuFlags.canShowLeft) {
-        UIBarButtonItem *button = [[barButtonItemClass alloc] initWithImage:[UIImage imageNamed:@"nav_menu_icon.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showLeft:)];
-        topController.navigationItem.leftBarButtonItem = button;
+        if (_menuFlags.canShowLeftBarButton) {
+            UIBarButtonItem *button = [[barButtonItemClass alloc] initWithImage:[UIImage imageNamed:@"nav_menu_icon.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showLeft:)];
+            topController.navigationItem.leftBarButtonItem = button;
+        }
     } else {
 		if(topController.navigationItem.leftBarButtonItem.target == self) {
 			topController.navigationItem.leftBarButtonItem = nil;
@@ -414,8 +418,10 @@
     }
     
     if (_menuFlags.canShowRight) {
-        UIBarButtonItem *button = [[barButtonItemClass alloc] initWithImage:[UIImage imageNamed:@"nav_menu_icon.png"] style:UIBarButtonItemStyleBordered  target:self action:@selector(showRight:)];
-        topController.navigationItem.rightBarButtonItem = button;
+        if (_menuFlags.canShowRightBarButton) {
+            UIBarButtonItem *button = [[barButtonItemClass alloc] initWithImage:[UIImage imageNamed:@"nav_menu_icon.png"] style:UIBarButtonItemStyleBordered  target:self action:@selector(showRight:)];
+            topController.navigationItem.rightBarButtonItem = button;
+        }
     } else {
 		if(topController.navigationItem.rightBarButtonItem.target == self) {
 			topController.navigationItem.rightBarButtonItem = nil;
@@ -651,6 +657,12 @@
         
     }
      
+}
+
+- (void)setShowNavigationItemButtons:(BOOL)yesOrNo {
+    _showNavigationItemButtons = yesOrNo;
+    _menuFlags.canShowLeftBarButton = yesOrNo;
+    _menuFlags.canShowRightBarButton = yesOrNo;
 }
 
 

@@ -53,6 +53,8 @@ typedef enum {
         unsigned int showingRightView:1;
         unsigned int canShowRight:1;
         unsigned int canShowLeft:1;
+        unsigned int canShowLeftBarButton:1;
+        unsigned int canShowRightBarButton:1;
     } _menuFlags;
     
 }
@@ -64,6 +66,7 @@ typedef enum {
 @property(nonatomic,strong) UIViewController *leftViewController;
 @property(nonatomic,strong) UIViewController *rightViewController;
 @property(nonatomic,strong) UIViewController *rootViewController;
+@property (nonatomic) BOOL showNavigationItemButtons;
 
 @property(nonatomic,readonly) UITapGestureRecognizer *tap;
 @property(nonatomic,readonly) UIPanGestureRecognizer *pan;
