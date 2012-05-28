@@ -24,6 +24,8 @@
 //  THE SOFTWARE.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "DDMenuController.h"
 
 #define kMenuFullWidth 320.0f
