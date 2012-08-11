@@ -50,6 +50,8 @@
 @synthesize rootViewController=_root;
 @synthesize showNavigationItemButtons=_showNavigationItemButtons;
 
+@synthesize disablePanToRevealMenu;
+
 @synthesize tap=_tap;
 @synthesize pan=_pan;
 @synthesize panBack=_panBack;
@@ -801,7 +803,10 @@
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
         pan.delegate = (id<UIGestureRecognizerDelegate>)self;
         [view addGestureRecognizer:pan];
-        _pan = pan;
+
+        if (!self.disablePanToRevealMenu) {
+            _pan = pan;
+        }
         
     } else {
         
