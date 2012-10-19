@@ -547,7 +547,7 @@
     }
     
     // Check for horizontal pan gesture for moving back
-    if (gestureRecognizer == _pan) {
+    if (gestureRecognizer == _panBack && (_menuFlags.showingRightView || _menuFlags.showingLeftView)) {
 
         UIPanGestureRecognizer *panGesture = (UIPanGestureRecognizer*)gestureRecognizer;
         CGPoint translation = [panGesture translationInView:self.view];
@@ -569,15 +569,16 @@
         
     }
 
-    return YES;
+    return NO;
    
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    //if (gestureRecognizer==_tap) {
-        //return YES;
-    //}     
-    return NO;
+	if (gestureRecognizer==_tap || gestureRecognizer==_pan || gestureRecognizer==_panBack) {
+		return NO;
+	}
+
+    return YES;
 }
 
 
