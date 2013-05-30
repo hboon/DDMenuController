@@ -110,6 +110,18 @@
     return [_root shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
 }
 
+- (BOOL)shouldAutorotate {
+    return [_root shouldAutorotate];
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return [_root supportedInterfaceOrientations];
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return [_root preferredInterfaceOrientationForPresentation];
+}
+
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 
