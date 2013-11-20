@@ -975,4 +975,20 @@
     
 }
 
+#pragma mark Status bar
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+	return [_root preferredStatusBarStyle];
+}
+
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+	return [_root preferredStatusBarUpdateAnimation];
+}
+
+
+- (BOOL)prefersStatusBarHidden {
+	return [_root prefersStatusBarHidden];
+}
+
 @end
